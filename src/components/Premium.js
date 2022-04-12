@@ -14,7 +14,7 @@ function handleLogout(e)
   return (
     <Container>
     <div><br></br>{uname!=="" &&<><h2>Welcome {uname}</h2> <button onClick={handleLogout} type="submit"  className="btn btn-primary btn-block">Logout</button></>}<br></br>
-    {uname=="" && <h2>You are not allowed to see premium content.. To access it login first</h2> }
+    {uname=="" && <h2>You are not allowed to see shop page.. To access it login first</h2> }
     </div>
     </Container>
   )

@@ -5,6 +5,7 @@ import axios from "axios"
 import {useState} from "react"
 import { useDispatch,useSelector} from 'react-redux'
 import {loggedin} from "../store/UserSlice"
+import {useNavigate} from "react-router-dom"
 function Login() {
   const [username,setUsername]=useState("");
   const [femail,setFemail]=useState("");
@@ -21,6 +22,8 @@ function Login() {
   const [onsubmit,setOnsubmit]=useState(false);
   const [cpassword,setCpassword]=useState("");
   const [npassword,setNpassword]=useState("");
+  const navigate=useNavigate();
+  
   
 
   const handleClose = (e) => {
@@ -70,6 +73,7 @@ function Login() {
        console.log("valid user")
        
      dispatch(loggedin(username))
+     navigate("../premium",{ replace: true })
      console.log(uname);
      }
 

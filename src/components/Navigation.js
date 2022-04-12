@@ -6,9 +6,11 @@ import Login from "./Login"
 import Register from './Register'
 import Home from './Home'
 import Premium from './Premium'
+import { useSelector } from 'react-redux';
 export function Navigation() {
+  const {uname}=useSelector((state)=>state.user);
   return (
-    <div>
+       <div>
      <BrowserRouter>
      <Navbar collapseOnSelect  expand="sm" bg="primary" variant="dark">
     <Container>
@@ -16,10 +18,12 @@ export function Navigation() {
     <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
     <Navbar.Collapse id="responsive-navbar-nav">
     <Nav className="me-auto">
+      {uname=="" && <>
       <Nav.Link to="/home" as={NavLink}>Home</Nav.Link>
       <Nav.Link to="/login" as={NavLink}>Login</Nav.Link>
-      <Nav.Link to="/register" as={NavLink}>Registration</Nav.Link>
-      <Nav.Link to="/premium" as={NavLink}>Shop Items</Nav.Link>
+      <Nav.Link to="/register" as={NavLink}>Registration</Nav.Link></>
+      }
+      {uname !="" &&<Nav.Link to="/premium" as={NavLink}>Shop Items</Nav.Link>}
     </Nav>
     </Navbar.Collapse>
     </Container>
