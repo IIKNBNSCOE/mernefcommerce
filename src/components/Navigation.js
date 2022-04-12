@@ -19,7 +19,7 @@ export function Navigation() {
       <Nav.Link to="/home" as={NavLink}>Home</Nav.Link>
       <Nav.Link to="/login" as={NavLink}>Login</Nav.Link>
       <Nav.Link to="/register" as={NavLink}>Registration</Nav.Link>
-      <Nav.Link to="/premium" as={NavLink}>Premium Content</Nav.Link>
+      <Nav.Link to="/premium" as={NavLink}>Shop Items</Nav.Link>
     </Nav>
     </Navbar.Collapse>
     </Container>

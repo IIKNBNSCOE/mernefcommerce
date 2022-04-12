@@ -4,11 +4,11 @@ import "../css/mystyle.css"
 function Home() {
   return (
     <div >
-   <Carousel className="Home">
+   <Carousel>
   <Carousel.Item interval={1000}>
     <img
-      className="d-block w-100"
-      src={require('../images/slide1.jpg')}
+      className="d-block w-100 img-fluid"
+      src={require('../images/shop1.jpg')}
       alt="First slide"
     />
     <Carousel.Caption>
@@ -16,10 +16,10 @@ function Home() {
       <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
     </Carousel.Caption>
   </Carousel.Item>
-  <Carousel.Item interval={500}>
+  <Carousel.Item interval={1000}>
     <img
-      className="d-block w-100"
-      src={require('../images/slide2.jpg')}
+      className="d-block w-100 img-fluid"
+      src={require('../images/shop2.jpg')}
       alt="Second slide"
     />
     <Carousel.Caption>
@@ -27,10 +27,10 @@ function Home() {
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
     </Carousel.Caption>
   </Carousel.Item>
-  <Carousel.Item>
+  <Carousel.Item interval={1000}>
     <img
-      className="d-block w-100"
-      src={require('../images/slide3.jpg')}
+      className="d-block w-100 img-fluid"
+      src={require('../images/shop3.jpg')}
       alt="Third slide"
     />
     <Carousel.Caption>

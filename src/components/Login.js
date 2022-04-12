@@ -1,5 +1,5 @@
 import React from 'react'
-import { Form,Container, Modal } from 'react-bootstrap'
+import { Form,Container, Modal,Spinner } from 'react-bootstrap'
 import "../css/mystyle.css"
 import axios from "axios"
 import {useState} from "react"
@@ -14,10 +14,14 @@ function Login() {
    const {uname}=useSelector(state=>state.user)
   const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
+  const [show2, setShow2] = useState(false);
   const [femailstatus,setFemailStatus]=useState(false);
   const [errorusername,setErrorusername]=useState("");
   const [errorpassword,setErrorpassword]=useState("");
   const [onsubmit,setOnsubmit]=useState(false);
+  const [cpassword,setCpassword]=useState("");
+  const [npassword,setNpassword]=useState("");
+  
 
   const handleClose = (e) => {
     //e.preventDefault();
@@ -25,11 +29,14 @@ function Login() {
     //console.log(femail);
 
   }
+  const handleShow2 = () => setShow2(true);
+  const handleClose2 = () => setShow2(false);
   const handleShow = () => setShow(true);
   const handleClose1 = () => setShow1(false);
   function handleSubmit(e)
   {
     setOnsubmit(true);
+    
     e.preventDefault();
     if(username.trim()==="" || password.trim()==="")
     {
@@ -52,10 +59,11 @@ function Login() {
     }
     else{
     console.log("inside ");
-    setOnsubmit(false);
+    
     setErrorusername("");
     setErrorpassword("");
     axios.post("http://localhost:9012/login",{username,password}).then((res)=>{
+      setOnsubmit(false);
      setStatus(res.data.message);
      if(res.data.message==="Valid User")
      {
@@ -67,9 +75,11 @@ function Login() {
 
     }).catch((err)=>
     {
+      setOnsubmit(false);
       setStatus("Server Error, Please try after sometime");
 
     })
+  
   }
   }
   function handleFemail(e)
@@ -85,15 +95,16 @@ function Login() {
        console.log("Server Error, Please try after sometime"); 
      })
   }
+  
     return (
     <div>
       <Container id="main-container" className="d-grid h-100 d-flex align-items-center justify-content-center signinform">
             
-    <Form  className="text-center w-50 center card p-3 bg-light"  onSubmit={handleSubmit}>
+    <Form  className="text-center w-50 center card p-3 bg-light shadow-lg mb-5 bg-body rounded"  onSubmit={handleSubmit}>
     <h4 className="fs-3 fw-normal" >Login Form</h4>
         <Form.Group>
         
-        <Form.Control placeholder="Enter Username"size ="lg"type="text" name="username"  className="position-relative" value={username} onChange={e=>setUsername(e.target.value)}/>
+        <Form.Control autoFocus placeholder="Enter Username"size ="lg"type="text" name="username"  className="position-relative" value={username} onChange={e=>setUsername(e.target.value)}/>
         <p style={{color:"red"}}>{errorusername}</p>
         </Form.Group>
       
@@ -107,10 +118,15 @@ function Login() {
         <button type="submit"  className="btn btn-primary btn-block">Login</button>
         
         </Form>
-        </Container>
-        <br></br>
-        <button type="submit" onClick ={handleShow} className="btn btn-primary btn-block">Forgot Password</button>
+        </Container>         
+        {onsubmit && <Spinner animation="border" variant="primary" />}
         <h3>{status}</h3>
+        
+        <button type="submit" onClick ={handleShow} className="btn btn-primary btn-block buttons">Forgot Password</button>
+        <button type="submit" onClick ={handleShow2}  className="btn btn-primary btn-block buttons">Change Password</button>
+        
+        
+
         <Modal show={show} onHide={handleClose}>
        <Modal.Header closeButton>
           <Modal.Title>Forgot Password</Modal.Title>
@@ -155,6 +171,44 @@ function Login() {
             Close
           </button>
          </Modal.Footer>
+      </Modal>
+      
+      <Modal show={show2} onHide={handleClose2}>
+       <Modal.Header closeButton>
+          <Modal.Title>Change Password</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Enter Your Current Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder=""
+                autoFocus
+                value={cpassword}
+                onChange={e=> setCpassword(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Enter Your New Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder=""
+                value={npassword}
+                onChange={e=> setNpassword(e.target.value)}
+              />
+            </Form.Group>
+           
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <button variant="secondary" onClick={handleClose2} className="btn btn-primary btn-block">
+            Close
+          </button>
+          <button variant="primary" onClick={handleFemail} className="btn btn-primary btn-block">
+           Send
+          </button>
+        </Modal.Footer>
       </Modal>
         </div>
   )

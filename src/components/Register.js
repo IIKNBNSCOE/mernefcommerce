@@ -34,10 +34,10 @@ export function Register() {
   return (
     <div>
   <Container id="main-container" className="d-grid h-100 d-flex align-items-center justify-content-center">
-        <Form className="text-center w-50 center card p-3 bg-light registerform" onSubmit={handleRegister}>
+        <Form className="text-center w-50 center card p-3 bg-light registerform shadow-lg mb-5 bg-body rounded" onSubmit={handleRegister}>
         <h4 className="fs-3 fw-normal">Registration Form</h4>
         <Form.Group>
-        <Form.Control placeholder="Enter Username" size="lg" type="text"  name="username"  className ="position-relative" value={username} onChange={e=>setUsername(e.target.value)} />
+        <Form.Control autoFocus placeholder="Enter Username" size="lg" type="text"  name="username"  className ="position-relative" value={username} onChange={e=>setUsername(e.target.value)} />
         </Form.Group>
         <Form.Group>
         <br/>
