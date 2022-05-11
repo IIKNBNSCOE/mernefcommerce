@@ -45,12 +45,12 @@ function Login() {
     {
       if(username.trim()==="" && password.trim()!="")
       {
-      setErrorusername("Please Fill User");
+      setErrorusername("Please Fill User2");
       setErrorpassword("");
       }
       if(password.trim()==="" && username.trim()!="" )
       {
-      setErrorpassword("Please Fill pass");
+      setErrorpassword("Please Fill pass2");
       setErrorusername("");
       }
       if(password.trim()==="" && username.trim()=="" )
