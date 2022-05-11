@@ -45,18 +45,18 @@ function Login() {
     {
       if(username.trim()==="" && password.trim()!="")
       {
-      setErrorusername("Please Fill Username");
+      setErrorusername("Please Fill User");
       setErrorpassword("");
       }
       if(password.trim()==="" && username.trim()!="" )
       {
-      setErrorpassword("Please Fill password");
+      setErrorpassword("Please Fill pass");
       setErrorusername("");
       }
       if(password.trim()==="" && username.trim()=="" )
       {
-        setErrorusername("Please Fill User");
-        setErrorpassword("Please Fill pass");
+        setErrorusername("Please Fill User1");
+        setErrorpassword("Please Fill pass1");
       }
      // console.log(formerror);
     }
